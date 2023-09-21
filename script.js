@@ -35,29 +35,36 @@ function generatePassword() {
     return "";
   }
 
-  // Initialize the pool of characters based on selected criteria
-  var charPool = "";
-  if (includeLowercase) charPool += lowercaseChars;
-  if (includeUppercase) charPool += uppercaseChars;
-  if (includeNumeric) charPool += numericChars;
-  if (includeSpecial) charPool += specialChars;
+  // Create an array to store possible characters
+  var possibleChars = "";
 
-  // Generate the password
+  // Add characters based on user selections
+  if (includeLowercase) possibleChars += lowercaseChars;
+  if (includeUppercase) possibleChars += uppercaseChars;
+  if (includeNumeric) possibleChars += numericChars;
+  if (includeSpecial) possibleChars += specialChars;
+
+  // Ensure at least one character from each selected criteria
   var password = "";
-  for (var i = 0; i < length; i++) {
-    var randomIndex = Math.floor(Math.random() * charPool.length);
-    password += charPool.charAt(randomIndex);
+
+  if (includeLowercase) {
+    password += lowercaseChars.charAt(Math.floor(Math.random() * lowercaseChars.length));
+  }
+  if (includeUppercase) {
+    password += uppercaseChars.charAt(Math.floor(Math.random() * uppercaseChars.length));
+  }
+  if (includeNumeric) {
+    password += numericChars.charAt(Math.floor(Math.random() * numericChars.length));
+  }
+  if (includeSpecial) {
+    password += specialChars.charAt(Math.floor(Math.random() * specialChars.length));
+  }
+
+  // Generate the remaining characters
+  for (var i = password.length; i < length; i++) {
+    var randomIndex = Math.floor(Math.random() * possibleChars.length);
+    password += possibleChars.charAt(randomIndex);
   }
 
   return password;
 }
-
-
-
-//inside generatePassword function
-  //create a variable to store user input from the password option function
-  //create a new array that will take in all possible characters that can be used for new password
-  //create conditional statements to push into possible character array....ie if the user selected lower case then we need to push those elements in the lowercase array into possible character array.
-  //loop through the possible character array and return characters based on the length given by user
-  //return the result and pass to be generated on the page
-  //need to assure that the newly created password has at least 1 character for each of the criteria selected.
