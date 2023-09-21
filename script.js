@@ -1,6 +1,10 @@
-
 var generateBtn = document.querySelector("#generate");
 
+// Global arrays to store character sets
+var lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+var uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var numericChars = "0123456789";
+var specialChars = "!@#$%^&*()-_+=<>?";
 
 function writePassword() {
   var password = generatePassword();
@@ -47,6 +51,7 @@ function generatePassword() {
 
   return password;
 }
+
 
 
 //inside generatePassword function
